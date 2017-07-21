@@ -1,0 +1,44 @@
+/**
+     * 移动端自适应函数
+ */
+.sprite {
+  display: inline-block;
+  background-repeat: no-repeat;
+}
+.icon-sprite-a {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url("../images/spritesheet/spritesheet.png");
+  background-size: 5.33333333rem 5.33333333rem;
+  background-position: 0rem 0rem;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
+}
+.icon-sprite-angel {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url("../images/spritesheet/spritesheet.png");
+  background-size: 5.33333333rem 5.33333333rem;
+  background-position: -2.66666667rem 0rem;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
+}
+.icon-sprite-cool {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url("../images/spritesheet/spritesheet.png");
+  background-size: 5.33333333rem 5.33333333rem;
+  background-position: 0rem -2.66666667rem;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
+}
+.icon-sprite-o {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url("../images/spritesheet/spritesheet.png");
+  background-size: 5.33333333rem 5.33333333rem;
+  background-position: -2.66666667rem -2.66666667rem;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
+}
+/*# sourceMappingURL=sprite.css.map */

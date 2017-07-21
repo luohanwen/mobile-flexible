@@ -1,0 +1,56 @@
+/**
+     * 一些基本的共用样式
+ */
+.clearfix {
+  *+height: 1%;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.fl-l {
+  float: left;
+}
+.fl-r {
+  float: right;
+}
+.pos-r {
+  position: relative;
+}
+.d-n {
+  display: none;
+}
+.d-b {
+  display: block;
+}
+.d-ib {
+  display: inline-block;
+}
+vi-h {
+  visibility: hidden;
+}
+.fw-b {
+  font-weight: bold;
+}
+.ta-l {
+  text-align: left;
+}
+.ta-c {
+  text-align: center;
+}
+.ta-r {
+  text-align: right;
+}
+.v-align-t {
+  vertical-align: top;
+}
+.v-align-m {
+  vertical-align: middle;
+}
+.v-align-b {
+  vertical-align: bottom;
+}
+/*# sourceMappingURL=common.css.map */

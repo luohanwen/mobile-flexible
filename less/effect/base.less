@@ -1,0 +1,14 @@
+@import "../mixin";
+/**
+     * 一些基础的效果
+ */
+//超出省略号
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+//控制段落显示几行，超出部分省略号
+.line-clamp-2{
+    .line-clamp(2);
+}

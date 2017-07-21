@@ -1,0 +1,12 @@
+/**
+     * 收集的一些特定效果，根据项目需要做成可配置的，每种效果单独在effect文件夹下
+ */
+/**
+     * 一些基础的效果
+ */
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*# sourceMappingURL=effect.css.map */
