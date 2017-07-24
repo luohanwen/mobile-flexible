@@ -1,6 +1,6 @@
 {
   "name": "mobile-flexible",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a project for mobile flexible",
   "main": "Gruntfile.js",
   "scripts": {
