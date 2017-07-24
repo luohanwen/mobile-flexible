@@ -23,7 +23,9 @@ module.exports = function(grunt) {
 		/*任务concat 对src文件夹里所有js文件进行连接*/
 		//清除目录
 		clean: {
-			all: "css/"
+			all: "css/",
+			mobileFlexible: "../mobile-flexible",
+			mobileFlexibleNotPublish: ["../mobile-flexible/components/*"]
 		},
 		//文件拷贝
 		copy: {
@@ -33,6 +35,15 @@ module.exports = function(grunt) {
 					cwd: 'less',
 					src: ['main.css', "page/*css"],
 					dest: 'css'
+				}]
+			},
+			//copy到mobile-flexible项目，用于发布npm社区（忽略一下文件）
+			mobileFlexible: {
+				files: [{
+					expand: true,
+					cwd: '',
+					src: ['**'],
+					dest: '../mobile-flexible'
 				}]
 			}
 		},
@@ -84,7 +95,7 @@ module.exports = function(grunt) {
 					},
 					expand: true,
 					cwd: 'css',
-					src: ['main.css', "page/*css"],
+					src: ['main.css', "page/*.css"],
 					dest: 'css',
 					ext: ".min.css"
 				}]
@@ -168,8 +179,8 @@ module.exports = function(grunt) {
 
 	//建立指定任务
 	grunt.registerTask("build", [
-		"clean",
-		"copy",
+		"clean:all",
+		"copy:src",
 		"autoprefixer",
 		"cssmin"
 	]);
@@ -179,6 +190,12 @@ module.exports = function(grunt) {
 	]);
 	grunt.registerTask("build-sprite", [
 		"sprite",
+	]);
+    //拷贝项目到mobile-flexible,用于发布到npm社区
+	grunt.registerTask("npmpublish", [
+	    "clean:mobileFlexible",
+		"copy:mobileFlexible",
+		"clean:mobileFlexibleNotPublish"
 	]);
 
 };
