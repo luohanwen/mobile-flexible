@@ -1,5 +1,6 @@
 #author haven
 #date 2017/07/21
+#project name mobile-flexible
 移动端项目方案（包含内容如下）
 1.移动端自适应方案
   *移动端自适应知识参考 https://segmentfault.com/a/1190000008774953
@@ -12,3 +13,4 @@
   *雪碧图
   *自动生成css兼容性前缀
   *监控
+5.发布到npm社区，发布到bower 项目名mobile-flexible

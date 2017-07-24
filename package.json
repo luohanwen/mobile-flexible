@@ -1,7 +1,15 @@
 {
-  "name": "3DFood",
-  "version": "0.0.0",
-  "dependencies": {},
+  "name": "mobile-flexible",
+  "version": "1.0.3",
+  "description": "a project for mobile flexible",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mobile",
+    "flexible"
+  ],
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-contrib-clean": "^0.5.0",
@@ -19,10 +27,6 @@
     "time-grunt": "^0.3.1",
     "grunt-ng-annotate": "^0.3.0"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  }
+  "author": "haven",
+  "license": "ISC"
 }
