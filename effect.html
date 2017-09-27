@@ -1,355 +1,449 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta content="telephone=no,email=no" name="format-detection" />
-		<title>Document</title>
-		<link rel="stylesheet" type="text/css" href="less/main.css" />
-		<script src="components/lib-flexible/build/flexible.js"></script>
-		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
-		<style type="text/css">
-			.input1:focus {
-				outline: 2px solid red;
-			}
-			
-			.input2 {
-				outline: none;
-			}
-			
-			.flex {
-				display: flex;
-				display: -webkit-flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				align-items: center;
-				/*align-content:center;*/
-				/*height: 200px;*/
-				border: 1px solid silver;
-			}
-			
-			.flex li {
-				border: 1px solid red;
-				padding: 20px;
-				flex: 0 0 20%;
-			}
-			
-			.item {
-				/*flex:auto;*/
-			}
-		</style>
-	</head>
+<head>
+    <meta charset="UTF-8" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title>Document</title>
+    <script type="text/javascript">
+    //初始化移动端自适应（core/lib-flexible/build/flexible.js）
+    (function(d, g) {
+        var t = d.document;
+        var c = t.documentElement;
+        var m = t.querySelector('meta[name="viewport"]');
+        var p = t.querySelector('meta[name="flexible"]');
+        var b = 0;
+        var r = 0;
+        var n;
+        var e = g.flexible || (g.flexible = {});
+        if (m) {
+            console.warn("将根据已有的meta标签来设置缩放比例");
+            var f = m.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+            if (f) {
+                r = parseFloat(f[1]);
+                b = parseInt(1 / r)
+            }
+        } else {
+            if (p) {
+                var l = p.getAttribute("content");
+                if (l) {
+                    var q = l.match(/initial\-dpr=([\d\.]+)/);
+                    var i = l.match(/maximum\-dpr=([\d\.]+)/);
+                    if (q) {
+                        b = parseFloat(q[1]);
+                        r = parseFloat((1 / b).toFixed(2))
+                    }
+                    if (i) {
+                        b = parseFloat(i[1]);
+                        r = parseFloat((1 / b).toFixed(2))
+                    }
+                }
+            }
+        }
+        if (!b && !r) { var j = d.navigator.appVersion.match(/android/gi); var k = d.navigator.appVersion.match(/iphone/gi); var o = d.devicePixelRatio; if (k) { if (o >= 3 && (!b || b >= 3)) { b = 3 } else { if (o >= 2 && (!b || b >= 2)) { b = 2 } else { b = 1 } } } else { b = 1 } r = 1 / b } c.setAttribute("data-dpr", b);
+        if (!m) {
+            m = t.createElement("meta");
+            m.setAttribute("name", "viewport");
+            m.setAttribute("content", "initial-scale=" + r + ", maximum-scale=" + r + ", minimum-scale=" + r + ", user-scalable=no");
+            if (c.firstElementChild) { c.firstElementChild.appendChild(m) } else {
+                var h = t.createElement("div");
+                h.appendChild(m);
+                t.write(h.innerHTML)
+            }
+        }
 
-	<body>
-		<h2>1px边框</h2>
-		<div class="mediaTest"></div>
-		<style>
-			.mediaTest {
-				border: 1px solid rgb(192, 192, 192);
-				height: 2rem;
-			}
-		</style>
-		<h2>图片自适应</h2>
-		<p>样式根据设计稿定好宽高（rem）,这里会自动根据样式设定的大小进行裁切。如果想指定尺寸，请设置data-size属性</p>
-		<div class="img-test">
-			<img src="" alt="" class="img-flex" data-src="https://fimg3.yooyoimg.com/04/52/rBWARFlLfByACQqQAAHrM8wOvGc197.jpg" data-size="150,300" data-default="https://fimg3.yooyoimg.com/04/5B/rBWARFlhmE-AGO8MAAQwWSV_Aso557.jpg"/>
-		</div>
-		<script type="text/javascript">
-			hvCommon.imgFlexible.init();
-		</script>
-		<h2>超出省略号</h2>
-		<div class="ellipsis">
-			的空间的看就发快递快疯狂的付款打开方法的开发可的看法的开发快递费空间的开发接口的番窠倒臼开发大快疯狂的付款
-		</div>
-		<h2>超出n行省略</h2>
-		<div class="line-clamp-2">
-			的空间的看就发快递快疯狂的付款打开方法的开发可的看法的开发快递费空间的开发接口的番窠倒臼开发大快疯狂的付款的空间的看就发快递快疯狂的付款打开方法的开发可的看法的开发快递费空间的开发接口的番窠倒臼开发大快疯狂的付款
-		</div>
-		<h2>点击时出现的边框颜色</h2>
-		<input type="text" class="input1" />
-		<input type="text" class="input2" />
-		<img src="" alt="" id="imgBase64" />
-		<i class="icon-sprite-a"></i>
-		<h2>弹性布局flex</h2>
-		<h3>搞个骰子玩一玩</h3>
-		<div class="black-block">
-			<div class="box single">
-				<span class="item"></span>
-			</div>
-			<div class="box couple">
-				<span class="item"></span>
-				<span class="item"></span>
-			</div>
-			<div class="box three">
-				<span class="item"></span>
-				<span class="item"></span>
-				<span class="item"></span>
-			</div>
-			<div class="box four">
-				<div class="column">
-					<span class="item"></span>
-					<span class="item"></span>
-				</div>
-				<div class="column">
-					<span class="item"></span>
-					<span class="item"></span>
-				</div>
-			</div>
-			<div class="box five">
-				<div class="column">
-					<span class="item"></span>
-					<span class="item"></span>
-				</div>
-				<div class="column">
-					<span class="item"></span>
-				</div>
-				<div class="column">
-					<span class="item"></span>
-					<span class="item"></span>
-				</div>
-			</div>
-			<div class="box six">
-				<div class="column">
-					<span class="item"></span>
-					<span class="item"></span>
-					<span class="item"></span>
-				</div>
-				<div class="column">
-					<span class="item"></span>
-					<span class="item"></span>
-					<span class="item"></span>
-				</div>
-			</div>
-		</div>
-		<style>
-			.black-block {
-				margin-left: 10px;
-				display: inline-flex;
-				display: -webkit-inline-flex;
-				padding: 30px;
-				background-color: rgb(35, 35, 35);
-				border-radius: 10px;
-				box-shadow: 0 0 0 6px rgb(224, 223, 204);
-			}
-			
-			.box {
-				margin-left: 20px;
-				box-sizing: border-box;
-				padding: 6px;
-				display: flex;
-				display: -webkit-flex;
-				width: 120px;
-				height: 120px;
-				background-color: rgb(231, 231, 231);
-				border-radius: 6px;
-				box-shadow: 0 0 6px 6px rgb(182, 182, 182) inset;
-			}
-			
-			.box:first-child {
-				margin-left: 0;
-			}
-			
-			.box span {
-				width: 22px;
-				height: 22px;
-				background-color: black;
-				border-radius: 50%;
-			}
-			
-			.box.single {
-				justify-content: center;
-				align-items: center;
-			}
-			
-			.box.couple {
-				flex-direction: column;
-				justify-content: space-around;
-				align-items: center;
-			}
-			
-			.box.three {
-				justify-content: space-between;
-			}
-			
-			.box.three .item:nth-child(2) {
-				align-self: center;
-			}
-			
-			.box.three .item:last-child {
-				align-self: flex-end;
-			}
-			
-			.box.four {
-				align-content: space-between;
-				flex-wrap: wrap;
-			}
-			
-			.box.four .column {
-				display: flex;
-				display: -webkit-flex;
-				flex-basis: 100%;
-				justify-content: space-between;
-			}
-			
-			.box.five {
-				align-content: space-between;
-				flex-wrap: wrap;
-			}
-			
-			.box.five .column {
-				display: flex;
-				display: -webkit-flex;
-				flex-basis: 100%;
-				justify-content: space-between;
-			}
-			
-			.box.five .column:nth-child(2) {
-				justify-content: center;
-			}
-			
-			.box.six {
-				justify-content: space-between;
-			}
-			
-			.box.six .column {
-				display: flex;
-				display: -webkit-flex;
-				flex-direction: column;
-				justify-content: space-between;
-			}
-		</style>
-		<h3>一行平均分配</h3>
-		<div class="grid">
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-		</div>
-		<h3>某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间。</h3>
-		<div class="grid">
-			<div class="grid-cell u-1of2">1/2</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-		</div>
-		<hr />
-		<div class="grid">
-			<div class="grid-cell u-1of4">1/4</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-		</div>
-		<h3>固定宽度换行</h3>
-		<div class="grid grid-wrap">
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-			<div class="grid-cell">111</div>
-		</div>
-		<h2>三角形</h2>
-		<div class="triangle"></div>
-		<style>
-			.grid {
-				display: flex;
-				display: -webkit-flex;
-				/*height: 50px;*/
-				border: 1px solid red;
-				border-right: 0;
-				border-bottom: 0;
-			}
-			
-			.grid-cell {
-				height: 50px;
-				flex: 1;
-				background-color: rgb(244, 243, 240);
-				border-right: 1px solid red;
-				border-bottom: 1px solid red;
-				text-align: center;
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
-				justify-content: center;
-			}
-			
-			.grid-cell.u-full {
-				flex: 0 0 100%;
-			}
-			
-			.grid-cell.u-1of2 {
-				flex: 0 0 50%;
-			}
-			
-			.grid-cell.u-1of3 {
-				flex: 0 0 33.3333%;
-			}
-			
-			.grid-cell.u-1of4 {
-				flex: 0 0 25%;
-			}
-			
-			.grid-wrap {
-				flex-wrap: wrap;
-			}
-			
-			.grid-wrap .grid-cell {
-				flex: 0 0 24.9%;
-			}
-		</style>
-		<h3>圣杯布局</h3>
-		<a href="holy-grail-layout.html">圣杯布局</a>
-		<h3>流式布局</h3>
-		<div class="parent">
-			<div class="child">
-				
-			</div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-		</div>
-		<style type="text/css">
-			.parent {
-				box-sizing: border-box;
-				width: 100%;
-				display: flex;
-				flex-flow: row wrap;
-				align-content: flex-start;
-				border-left: 1px solid red;
-				border-bottom: 1px solid red;
-			}
-			
-			.child {
-				box-sizing: border-box;
-				background-color: white;
-				flex: 0 0 25%;
-				height: 50px;
-				border-top:1px solid red;
-				border-right: 1px solid red;
-			}
-		</style>
-		<h2>动画</h2>
-		<h2>线性渐变</h2>
-		<h2>canvas</h2>
-		<h2>video</h2>
-		<h2>audio</h2>
-		<h2>手机滑动轮播</h2>
-		<h2>表单样式</h2>
-		<link rel="stylesheet" type="text/css" href="components/swiper/dist/css/swiper.min.css"/>
-		<script src="components/swiper/dist/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			hvCommon.convertImgToBase64('images/sprite/a.png', function(base64Img) {
-				//				console.log(base64Img);
-				// Base64DataURL
-				document.querySelector("#imgBase64").src = base64Img;
-			});
-		</script>
-	</body>
+        function a() {
+            var u = c.getBoundingClientRect().width;
+            if (u / b > 540) { u = 540 * b }
+            var v = u / 10;
+            c.style.fontSize = v + "px";
+            e.rem = d.rem = v;
+            s()
+        }
+        d.addEventListener("resize", function() {
+            clearTimeout(n);
+            n = setTimeout(a, 300)
+        }, false);
+        d.addEventListener("pageshow", function(u) {
+            if (u.persisted) {
+                clearTimeout(n);
+                n = setTimeout(a, 300)
+            }
+        }, false);
+        if (t.readyState === "complete") {
+            t.body.style.fontSize = 12 * b + "px";
+            s()
+        } else {
+            t.addEventListener("DOMContentLoaded", function(u) {
+                t.body.style.fontSize = 12 * b + "px";
+                s()
+            }, false)
+        }
+        a();
+        e.dpr = d.dpr = b;
+        e.refreshRem = a;
+        e.rem2px = function(v) { var u = parseFloat(v) * this.rem; if (typeof v === "string" && v.match(/rem$/)) { u += "px" } return u };
+        e.px2rem = function(v) { var u = parseFloat(v) / this.rem; if (typeof v === "string" && v.match(/px$/)) { u += "rem" } return u };
+
+        function s() {
+            if (!t.body) { return }
+            var v = t.createElement("div"),
+                u;
+            v.style.cssText = "position: fixed;left: -1rem;top: 0;width: 1rem;height: 1px";
+            t.body.appendChild(v);
+            u = v.getBoundingClientRect().width;
+            if (u != d.rem) {
+                var x = Math.round(d.rem / u * d.rem);
+                c.style.fontSize = x + "px";
+                d.rem = x
+            }
+            t.body.removeChild(v)
+        }
+    })(window, window.lib || (window.lib = {}));
+    </script>
+    <link rel="stylesheet" type="text/css" href="less/main.css" />
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    .input1:focus {
+        outline: 2px solid red;
+    }
+
+    .input2 {
+        outline: none;
+    }
+
+    .flex {
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        /*align-content:center;*/
+        /*height: 200px;*/
+        border: 1px solid silver;
+    }
+
+    .flex li {
+        border: 1px solid red;
+        padding: 20px;
+        flex: 0 0 20%;
+    }
+
+    .item {
+        /*flex:auto;*/
+    }
+    </style>
+</head>
+
+<body>
+    <h2>1px边框</h2>
+    <div class="mediaTest"></div>
+    <style>
+    .mediaTest {
+        border: 1px solid rgb(192, 192, 192);
+        height: 2rem;
+    }
+    </style>
+    <h2>图片自适应</h2>
+    <p>样式根据设计稿定好宽高（rem）,这里会自动根据样式设定的大小进行裁切。如果想指定尺寸，请设置data-size属性</p>
+    <div class="img-test">
+        <img src="" alt="" class="img-flex" data-src="https://fimg3.yooyoimg.com/04/52/rBWARFlLfByACQqQAAHrM8wOvGc197.jpg" data-size="150,300" data-default="https://fimg3.yooyoimg.com/04/5B/rBWARFlhmE-AGO8MAAQwWSV_Aso557.jpg" />
+    </div>
+    <script type="text/javascript">
+    hvCommon.imgFlexible.init();
+    </script>
+    <h2>超出省略号</h2>
+    <div class="ellipsis">
+        的空间的看就发快递快疯狂的付款打开方法的开发可的看法的开发快递费空间的开发接口的番窠倒臼开发大快疯狂的付款
+    </div>
+    <h2>超出n行省略</h2>
+    <div class="line-clamp-2">
+        的空间的看就发快递快疯狂的付款打开方法的开发可的看法的开发快递费空间的开发接口的番窠倒臼开发大快疯狂的付款的空间的看就发快递快疯狂的付款打开方法的开发可的看法的开发快递费空间的开发接口的番窠倒臼开发大快疯狂的付款
+    </div>
+    <h2>点击时出现的边框颜色</h2>
+    <input type="text" class="input1" />
+    <input type="text" class="input2" />
+    <img src="" alt="" id="imgBase64" />
+    <i class="icon-sprite-a"></i>
+    <h2>弹性布局flex</h2>
+    <h3>搞个骰子玩一玩</h3>
+    <div class="black-block">
+        <div class="box single">
+            <span class="item"></span>
+        </div>
+        <div class="box couple">
+            <span class="item"></span>
+            <span class="item"></span>
+        </div>
+        <div class="box three">
+            <span class="item"></span>
+            <span class="item"></span>
+            <span class="item"></span>
+        </div>
+        <div class="box four">
+            <div class="column">
+                <span class="item"></span>
+                <span class="item"></span>
+            </div>
+            <div class="column">
+                <span class="item"></span>
+                <span class="item"></span>
+            </div>
+        </div>
+        <div class="box five">
+            <div class="column">
+                <span class="item"></span>
+                <span class="item"></span>
+            </div>
+            <div class="column">
+                <span class="item"></span>
+            </div>
+            <div class="column">
+                <span class="item"></span>
+                <span class="item"></span>
+            </div>
+        </div>
+        <div class="box six">
+            <div class="column">
+                <span class="item"></span>
+                <span class="item"></span>
+                <span class="item"></span>
+            </div>
+            <div class="column">
+                <span class="item"></span>
+                <span class="item"></span>
+                <span class="item"></span>
+            </div>
+        </div>
+    </div>
+    <style>
+    .black-block {
+        margin-left: 10px;
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        padding: 30px;
+        background-color: rgb(35, 35, 35);
+        border-radius: 10px;
+        box-shadow: 0 0 0 6px rgb(224, 223, 204);
+    }
+
+    .box {
+        margin-left: 20px;
+        box-sizing: border-box;
+        padding: 6px;
+        display: flex;
+        display: -webkit-flex;
+        width: 120px;
+        height: 120px;
+        background-color: rgb(231, 231, 231);
+        border-radius: 6px;
+        box-shadow: 0 0 6px 6px rgb(182, 182, 182) inset;
+    }
+
+    .box:first-child {
+        margin-left: 0;
+    }
+
+    .box span {
+        width: 22px;
+        height: 22px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+    .box.single {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box.couple {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .box.three {
+        justify-content: space-between;
+    }
+
+    .box.three .item:nth-child(2) {
+        align-self: center;
+    }
+
+    .box.three .item:last-child {
+        align-self: flex-end;
+    }
+
+    .box.four {
+        align-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .box.four .column {
+        display: flex;
+        display: -webkit-flex;
+        flex-basis: 100%;
+        justify-content: space-between;
+    }
+
+    .box.five {
+        align-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .box.five .column {
+        display: flex;
+        display: -webkit-flex;
+        flex-basis: 100%;
+        justify-content: space-between;
+    }
+
+    .box.five .column:nth-child(2) {
+        justify-content: center;
+    }
+
+    .box.six {
+        justify-content: space-between;
+    }
+
+    .box.six .column {
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    </style>
+    <h3>一行平均分配</h3>
+    <div class="grid">
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+    </div>
+    <h3>某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间。</h3>
+    <div class="grid">
+        <div class="grid-cell u-1of2">1/2</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+    </div>
+    <hr />
+    <div class="grid">
+        <div class="grid-cell u-1of4">1/4</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+    </div>
+    <h3>固定宽度换行</h3>
+    <div class="grid grid-wrap">
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+        <div class="grid-cell">111</div>
+    </div>
+    <h2>三角形</h2>
+    <div class="triangle"></div>
+    <style>
+    .grid {
+        display: flex;
+        display: -webkit-flex;
+        /*height: 50px;*/
+        border: 1px solid red;
+        border-right: 0;
+        border-bottom: 0;
+    }
+
+    .grid-cell {
+        height: 50px;
+        flex: 1;
+        background-color: rgb(244, 243, 240);
+        border-right: 1px solid red;
+        border-bottom: 1px solid red;
+        text-align: center;
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .grid-cell.u-full {
+        flex: 0 0 100%;
+    }
+
+    .grid-cell.u-1of2 {
+        flex: 0 0 50%;
+    }
+
+    .grid-cell.u-1of3 {
+        flex: 0 0 33.3333%;
+    }
+
+    .grid-cell.u-1of4 {
+        flex: 0 0 25%;
+    }
+
+    .grid-wrap {
+        flex-wrap: wrap;
+    }
+
+    .grid-wrap .grid-cell {
+        flex: 0 0 24.9%;
+    }
+    </style>
+    <h3>圣杯布局</h3>
+    <a href="holy-grail-layout.html">圣杯布局</a>
+    <h3>流式布局</h3>
+    <div class="parent">
+        <div class="child">
+        </div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <style type="text/css">
+    .parent {
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        align-content: flex-start;
+        border-left: 1px solid red;
+        border-bottom: 1px solid red;
+    }
+
+    .child {
+        box-sizing: border-box;
+        background-color: white;
+        flex: 0 0 25%;
+        height: 50px;
+        border-top: 1px solid red;
+        border-right: 1px solid red;
+    }
+    </style>
+    <h2>动画</h2>
+    <h2>线性渐变</h2>
+    <h2>canvas</h2>
+    <h2>video</h2>
+    <h2>audio</h2>
+    <h2>手机滑动轮播</h2>
+    <h2>表单样式</h2>
+    <link rel="stylesheet" type="text/css" href="components/swiper/dist/css/swiper.min.css" />
+    <script src="components/swiper/dist/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    hvCommon.convertImgToBase64('images/sprite/a.png', function(base64Img) {
+        //				console.log(base64Img);
+        // Base64DataURL
+        document.querySelector("#imgBase64").src = base64Img;
+    });
+    </script>
+</body>
 
 </html>
