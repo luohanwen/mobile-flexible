@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>HavenBook</title>
+		<link rel="shortcut icon" type="text/css" href="HavenBook.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/frame.css" />
+		<script src="js/response.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			iframe {
+				border: none;
+				width: 100%;
+				height: 100%;
+				border:1px solid red;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="book">
+			<div class="book-summury">
+				<div class="summury-inner">
+					<div class="book-name">
+						HavenBook
+					</div>
+					<ul class="summury">
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="book-body">
+				<header>
+					<div class="hd-l">
+						<i class="icon iconfont icon-menu"></i>
+					</div>
+					<h1>简介</h1>
+					<div class="hd-l">
+
+					</div>
+				</header>
+				<!--<div class="body-inner">-->
+				<iframe src="../../effect.html" width="" height="" id="content"></iframe>
+				<!--</div>-->
+			</div>
+		</div>
+		<script src="../../js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(".icon-menu").on("click", function() {
+				$(".book").toggleClass("with-summury");
+			});
+
+			//			function reinitIframe(iframeId) {
+			//				var iframe = document.getElementById(iframeId);
+			//				iframe.onload = function() {
+			//					var bHeight = iframe.contentWindow.document.body.scrollHeight;
+			//					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+			//					var bWidth = iframe.contentWindow.document.body.scrollWidth;
+			//					var dWidth = iframe.contentWindow.document.documentElement.scrollWidth;
+			//					var height = Math.max(bHeight, dHeight);
+			//					var width = Math.max(bWidth, dWidth);
+			//					iframe.height = height + 200;
+			//					iframe.width = width;
+			//					iframe.style.display = "block";
+			//				};
+			//			}
+			//			reinitIframe("content");
+		</script>
+	</body>
+
+</html>

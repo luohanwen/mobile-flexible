@@ -1,0 +1,60 @@
+@import "normalize.less";
+@import "reset.less";
+@import "flexible.less";
+@import "../font/iconfont.css";
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+.book {
+    height: 100%;
+    display: flex;
+    width: calc(~"20rem - 1.6rem");
+    position: relative;
+    right:calc(~"10rem - 1.6rem");
+    transition: right .25s;
+    &.with-summury{
+        right:0;
+    }
+    .book-summury {
+        width: calc(~"10rem - 1.6rem");
+        box-sizing: border-box;
+        background-color: rgb(250,250,250);
+        border-right: 1px solid rgb(232,232,232);
+        .summury-inner {}
+    }
+    .book-body {
+        box-sizing: border-box;
+        width: 10rem;
+        flex: 1;
+        position: relative;
+        .pxToRem(padding-top,100);
+        overflow-y: auto;
+        header{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1;
+            .pxToRem(height,100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgb(126, 136, 139);
+            .px2px(font-size,20);
+            .pxToRemTwo(padding,0,16);
+            i{
+                .px2px(font-size,60);
+            }
+            .hd-l{
+                width: 2rem;
+            }
+            .hd-r{
+                width: 2rem;
+            }
+        }
+        .body-inner {}
+    }
+}

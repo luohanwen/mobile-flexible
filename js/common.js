@@ -81,6 +81,54 @@
 				newImgSrc = [imgMatch[1], Math.floor(imgWidth) || "-", Math.floor(imgHeight) || "-"].join("_") + imgMatch[2];
 				return newImgSrc;
 			}
+		},
+		//判断平台
+		platform: {
+			isIos: function() {
+				if(navigator.userAgent.match(/(iPad|iPhone)/)) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+
+			isAndroid: function() {
+				if(navigator.userAgent.match(/(Android)/)) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			isMobile: function() {
+				if(this.isIos() || this.isAndroid()) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			isWeixin: function() {
+				var ua = navigator.userAgent.toLowerCase();
+				if(ua.match(/MicroMessenger/i) == "micromessenger") {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			isPC: function() {
+				var userAgentInfo = navigator.userAgent;
+				var Agents = ["Android", "iPhone",
+					"SymbianOS", "Windows Phone",
+					"iPad", "iPod"
+				];
+				var flag = true;
+				for(var v = 0; v < Agents.length; v++) {
+					if(userAgentInfo.indexOf(Agents[v]) > 0) {
+						flag = false;
+						break;
+					}
+				}
+				return flag;
+			}
 		}
 	};
 	win['hvCommon'] = hvCommon;
