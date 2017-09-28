@@ -4,6 +4,6 @@ color 0A
 
 @echo Author:haven
 
-grunt npmpublish --base E:/node_modules/ --force
+grunt npmpublish --base D:/devSoft/nodejs/node_global/node_modules/ --force
 
 pause

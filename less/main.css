@@ -392,10 +392,16 @@ template {
 [hidden] {
   display: none;
 }
-/**
-     * 自己常用的一些重置
- */
 body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
 dl,
 dt,
 dd,
@@ -403,8 +409,10 @@ ul,
 ol,
 li,
 pre,
+form,
 fieldset,
 legend,
+button,
 input,
 textarea,
 th,
@@ -412,28 +420,69 @@ td {
   margin: 0;
   padding: 0;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+body,
+button,
+input,
+select,
+textarea {
+  font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: couriernew, courier, monospace;
+}
+small {
+  font-size: 12px;
 }
 ul,
-li {
+ol {
   list-style: none;
-}
-fieldset,
-img {
-  border: none;
 }
 a {
   text-decoration: none;
-  color: #333333;
 }
 a:hover {
-  text-decoration: inline;
-  color: #cc0000;
+  text-decoration: underline;
 }
-input:focus {
-  outline: none;
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+legend {
+  color: #000;
+}
+fieldset,
+img {
+  border: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /**
      * 定义变量
@@ -465,6 +514,12 @@ input:focus {
   height: 0;
   clear: both;
   visibility: hidden;
+}
+.posi-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .fl-l {
   float: left;
@@ -542,7 +597,7 @@ vi-h {
 .icon-sprite-a {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: 0rem 0rem;
   width: 2.66666667rem;
@@ -551,7 +606,7 @@ vi-h {
 .icon-sprite-angel {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: -2.66666667rem 0rem;
   width: 2.66666667rem;
@@ -560,7 +615,7 @@ vi-h {
 .icon-sprite-cool {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: 0rem -2.66666667rem;
   width: 2.66666667rem;
@@ -569,7 +624,7 @@ vi-h {
 .icon-sprite-o {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: -2.66666667rem -2.66666667rem;
   width: 2.66666667rem;
@@ -578,19 +633,7 @@ vi-h {
 /**
      * 具体页面的样式
  */
-.test {
-  transition: width 2s;
-  transform: rotateX(20deg);
-}
-.test {
-  transform: rotateX(20deg);
-}
-.img-test {
-  width: 2.77333333rem;
-  height: 2.08rem;
-}
-.img-test img {
-  width: 100%;
-  height: 100%;
+#test {
+  color: green;
 }
 /*# sourceMappingURL=main.css.map */
