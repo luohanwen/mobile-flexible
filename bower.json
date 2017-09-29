@@ -16,5 +16,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "swiper": "^3.4.2",
+    "lib-flexible": "*",
+    "fastclick": "^1.0.6"
+  }
 }
