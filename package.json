@@ -4,7 +4,12 @@
   "description": "a project for mobile flexible",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browser": "grunt browser --base D:/devSoft/nodejs/node_global/node_modules/ --force",
+    "build": "grunt build --base D:/devSoft/nodejs/node_global/node_modules/ --force",
+    "npmpublish": "grunt npmpublish --base D:/devSoft/nodejs/node_global/node_modules/ --force",
+    "server": "http-server -a 127.0.0.1 -p 5000",
+    "watch": "grunt dowatch --base D:/devSoft/nodejs/node_global/node_modules/ --force"
   },
   "keywords": [
     "mobile",
