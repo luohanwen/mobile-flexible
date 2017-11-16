@@ -1,3 +1,35 @@
-#test {
-    color: green;
+@import "../mixin";
+html,
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Helvetica, STHeiTi, SimHei, Arial, sans-serif;
+}
+
+.scroll-active {
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.scroll {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.block{
+	height:4rem;
+	background-color:green;
+}
+.test{
+	width:2rem;
+	height:2rem;
+	background-color:blue;
 }

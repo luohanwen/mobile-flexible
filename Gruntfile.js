@@ -126,7 +126,7 @@ module.exports = function(grunt) {
                 tasks: ['build']
             },
             less: {
-                files: ['less/page/*.css'],
+                files: ['less/page/*.less'],
                 tasks: ['less']
             },
         },
@@ -157,11 +157,12 @@ module.exports = function(grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: ['less/main.css', '*.html']
+                    src: ['less/main.css', '*.html','js/*.js']
                 },
                 options: {
                 	watchTask:true,
-                    proxy: "172.28.44.8:5000"
+                    // proxy: "172.28.44.8:5000",
+                    server:"./"
                 }
             }
         },

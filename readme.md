@@ -13,6 +13,8 @@
     - 雪碧图   
     - 自动生成css兼容性前缀  
     - 监控  
+    - 实时刷新浏览器  
+    - 编译less  
 - 发布到npm社区，发布到bower 项目名mobile-flexible  
 
 

@@ -1,4 +1,5 @@
-;(function(win, lib) {
+//此版本修复了在某些手机1rem计算不准确的bug
+(function(win, lib) {
     var doc = win.document;
     var docEl = doc.documentElement;
     var metaEl = doc.querySelector('meta[name="viewport"]');
@@ -7,7 +8,7 @@
     var scale = 0;
     var tid;
     var flexible = lib.flexible || (lib.flexible = {});
-    
+
     if (metaEl) {
         console.warn('将根据已有的meta标签来设置缩放比例');
         var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
@@ -22,11 +23,11 @@
             var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
             if (initialDpr) {
                 dpr = parseFloat(initialDpr[1]);
-                scale = parseFloat((1 / dpr).toFixed(2));    
+                scale = parseFloat((1 / dpr).toFixed(2));
             }
             if (maximumDpr) {
                 dpr = parseFloat(maximumDpr[1]);
-                scale = parseFloat((1 / dpr).toFixed(2));    
+                scale = parseFloat((1 / dpr).toFixed(2));
             }
         }
     }
@@ -37,9 +38,9 @@
         var devicePixelRatio = win.devicePixelRatio;
         if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
                 dpr = 3;
-            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
                 dpr = 2;
             } else {
                 dpr = 1;
@@ -65,7 +66,7 @@
         }
     }
 
-    function refreshRem(){
+    function refreshRem() {
         var width = docEl.getBoundingClientRect().width;
         if (width / dpr > 540) {
             width = 540 * dpr;
@@ -73,6 +74,7 @@
         var rem = width / 10;
         docEl.style.fontSize = rem + 'px';
         flexible.rem = win.rem = rem;
+        fixRem();
     }
 
     win.addEventListener('resize', function() {
@@ -88,12 +90,14 @@
 
     if (doc.readyState === 'complete') {
         doc.body.style.fontSize = 12 * dpr + 'px';
+        fixRem();
     } else {
         doc.addEventListener('DOMContentLoaded', function(e) {
             doc.body.style.fontSize = 12 * dpr + 'px';
+            fixRem();
         }, false);
     }
-    
+
 
     refreshRem();
 
@@ -114,4 +118,19 @@
         return val;
     }
 
+    function fixRem() {
+        //修正华为/三星 安卓1rem计算不准确的bug
+        if (!doc.body) return;
+        var ele = doc.createElement('div'),
+            w;
+        ele.style.cssText = 'position: fixed;left: -1rem;top: 0;width: 1rem;height: 1px';
+        doc.body.appendChild(ele);
+        w = ele.getBoundingClientRect().width;
+        if (w != win.rem) {
+            var rem = Math.round(win.rem / w * win.rem);
+            docEl.style.fontSize = rem + 'px';
+            win.rem = rem;
+        }
+        doc.body.removeChild(ele);
+    }
 })(window, window['lib'] || (window['lib'] = {}));

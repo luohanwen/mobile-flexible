@@ -3,7 +3,12 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
     <title>Document</title>
     <script type="text/javascript">
     //初始化移动端自适应（core/lib-flexible/build/flexible.js）
@@ -105,17 +110,13 @@
 </head>
 
 <body>
-    <div id="test">5</div>
-    移动端自适应方案
-    <a href="effect.html">效果</a>
-    <table border="" cellspacing="" cellpadding="">
-        <tr>
-            <th>Header</th>
-        </tr>
-        <tr>
-            <td>Data</td>
-        </tr>
-    </table>
+        
+    <div><a href="effect.html">组件</a></div>
+
+
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="components/fastclick/lib/fastclick.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js?v=170929" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>
