@@ -392,10 +392,16 @@ template {
 [hidden] {
   display: none;
 }
-/**
-     * 自己常用的一些重置
- */
 body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
 dl,
 dt,
 dd,
@@ -403,8 +409,10 @@ ul,
 ol,
 li,
 pre,
+form,
 fieldset,
 legend,
+button,
 input,
 textarea,
 th,
@@ -412,28 +420,94 @@ td {
   margin: 0;
   padding: 0;
 }
+body,
+button,
+input,
+select,
+textarea {
+  font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: couriernew, courier, monospace;
+}
+small {
+  font-size: 12px;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+legend {
+  color: #000;
+}
+fieldset,
+img {
+  border: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-ul,
-li {
-  list-style: none;
-}
-fieldset,
-img {
-  border: none;
-}
 a {
   text-decoration: none;
-  color: #333333;
+  outline: 0;
+  -webkit-tap-highlight-color: rbga(0, 0, 0, 0);
+}
+a:active {
+  text-decoration: none;
+  outline: 0;
+  -webkit-tap-highlight-color: rbga(0, 0, 0, 0);
 }
 a:hover {
-  text-decoration: inline;
-  color: #cc0000;
+  text-decoration: none;
+  outline: 0;
+  -webkit-tap-highlight-color: rbga(0, 0, 0, 0);
 }
-input:focus {
-  outline: none;
+a:visited {
+  text-decoration: none;
+  outline: 0;
+  -webkit-tap-highlight-color: rbga(0, 0, 0, 0);
+}
+a:focus {
+  text-decoration: none;
+  outline: 0;
+  -webkit-tap-highlight-color: rbga(0, 0, 0, 0);
 }
 /**
      * 定义变量
@@ -467,6 +541,13 @@ input:focus {
   height: 0;
   clear: both;
   visibility: hidden;
+}
+.posi-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 .fl-l {
   float: left;
@@ -528,15 +609,6 @@ vi-h {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-/**
-     * 与具体项目相关的，比如色调等
- */
-.color-m {
-  color: #ffffff;
-}
-.bg-m {
-  background-color: #ffffff;
-}
 .sprite {
   display: inline-block;
   background-repeat: no-repeat;
@@ -544,7 +616,7 @@ vi-h {
 .icon-sprite-a {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: 0rem 0rem;
   width: 2.66666667rem;
@@ -553,7 +625,7 @@ vi-h {
 .icon-sprite-angel {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: -2.66666667rem 0rem;
   width: 2.66666667rem;
@@ -562,7 +634,7 @@ vi-h {
 .icon-sprite-cool {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: 0rem -2.66666667rem;
   width: 2.66666667rem;
@@ -571,29 +643,129 @@ vi-h {
 .icon-sprite-o {
   display: inline-block;
   background-repeat: no-repeat;
-  background-image: url("../images/spritesheet/spritesheet.png");
+  background-image: url(../images/spritesheet/spritesheet.png);
   background-size: 5.33333333rem 5.33333333rem;
   background-position: -2.66666667rem -2.66666667rem;
   width: 2.66666667rem;
   height: 2.66666667rem;
 }
 /**
+     * 引入组件的less
+ */
+.lottery .lottery-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.lottery .lottery-row .lottery-unit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 2.4rem;
+  height: 2.41333333rem;
+  background: url(../components/lottery/images/lottery/lottery-unit-bg.png);
+  background-size: contain;
+  margin-left: 0.18666667rem;
+  margin-top: 0.16rem;
+}
+.lottery .lottery-row .lottery-unit.active {
+  background: url(../components/lottery/images/lottery/lottery-unit-active.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i {
+  display: inline-block;
+}
+.lottery .lottery-row .lottery-unit i.ico-coin50 {
+  width: 1.86666667rem;
+  height: 1.70666667rem;
+  background: url(../components/lottery/images/lottery/lottery-coin50.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-key {
+  width: 1.53333333rem;
+  height: 1.76rem;
+}
+.lottery .lottery-row .lottery-unit i.ico-key.ico-key1 {
+  background: url(../components/lottery/images/lottery/lottery-key1.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-key.ico-key3 {
+  background: url(../components/lottery/images/lottery/lottery-key3.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-key.ico-key5 {
+  background: url(../components/lottery/images/lottery/lottery-key5.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-key.ico-key7 {
+  background: url(../components/lottery/images/lottery/lottery-key7.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-masonry {
+  width: 2.12rem;
+  height: 1.86666667rem;
+  background: url(../components/lottery/images/lottery/lottery-masonry10.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-mushroom80 {
+  width: 2.01333333rem;
+  height: 1.86666667rem;
+  background: url(../components/lottery/images/lottery/lottery-mushroom80.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-unit i.ico-xxcy {
+  width: 1.85333333rem;
+  height: 0.48rem;
+  background: url(../components/lottery/images/lottery/lottery-xxcy.png);
+  background-size: contain;
+}
+.lottery .lottery-row .lottery-go {
+  width: 2.4rem;
+  height: 2.41333333rem;
+  background: url(../components/lottery/images/lottery/lottery-go.png);
+  background-size: contain;
+  margin-left: 0.18666667rem;
+  margin-top: 0.16rem;
+}
+/**
      * 具体页面的样式
  */
-.test {
-  transition: width 2s;
-  -webkit-transform: rotateX(20deg);
-          transform: rotateX(20deg);
+html,
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.test {
-  -webkit-transform: rotateX(20deg);
-          transform: rotateX(20deg);
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Helvetica, STHeiTi, SimHei, Arial, sans-serif;
 }
-.img-test {
-  width: 2.77333333rem;
-  height: 2.08rem;
+.scroll-active {
+  -webkit-overflow-scrolling: touch !important;
 }
-.img-test img {
+.scroll {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+.block {
+  height: 4rem;
+  background-color: green;
+}
+.test {
+  width: 2rem;
+  height: 2rem;
+  background-color: blue;
+}
+.demo {
+  color: green;
 }
