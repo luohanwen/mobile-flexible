@@ -1,10 +1,29 @@
 /**
  * 提供一些共用的方法
- * @param {Object} win
- * @param {Object} doc
+ * 支持 CommonJs(nodejs) amd(require.js) cmd(seajs) 浏览器全局变量(window)
  * @author haven
  */
-(function(win, doc) {
+(function(root, factory) {
+    //CommonJs  代表服务器端node.js , cmd sea.js
+    if (typeof exports === "object" && module === "object") {
+        module.exports = factory();
+    }
+    //amd 代表客户端 require.js
+    else if (typeof define === "function" && define.amd) {
+        define([], factory);
+    }
+    //cmd 代表客户端 seajs
+    else if (typeof define === "function") {
+        define(function() {
+            return factory();
+        });
+    }
+    //浏览器本地环境 window
+    else {
+        root["hvCommon"] = factory();
+    }
+})(this, function() {
+    var doc = document;
     var hvCommon = {
         validate: {
             //只能是汉字
@@ -65,8 +84,7 @@
                 m += s2.split(".")[1].length;
             } catch (e) {}
             return (
-                Number(s1.replace(".", "")) *
-                Number(s2.replace(".", "")) /
+                (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) /
                 Math.pow(10, m)
             );
         },
@@ -285,5 +303,5 @@
             }
         }
     };
-    win["hvCommon"] = hvCommon;
-})(window, document);
+    return hvCommon;
+});
